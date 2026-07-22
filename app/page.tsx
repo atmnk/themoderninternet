@@ -1,6 +1,5 @@
 "use client";
 
-import NextLink from "next/link";
 import { Button, Card, CardContent, CardHeader, Chip } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
@@ -9,6 +8,12 @@ import { subtitle, title } from "@/components/primitives";
 
 export default function Home() {
   const router = useRouter();
+  const readyPages = [...siteConfig.practicePages]
+    .filter((page) => page.status === "Ready")
+    .sort((left, right) => left.label.localeCompare(right.label));
+  const comingSoonPages = [...siteConfig.practicePages]
+    .filter((page) => page.status !== "Ready")
+    .sort((left, right) => left.label.localeCompare(right.label));
 
   return (
     <section className="space-y-10">
@@ -50,33 +55,83 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        {siteConfig.practicePages.map((page) => (
-          <Card
-            key={page.href}
-            className="border border-separator bg-surface shadow-surface"
-          >
-            <CardHeader className="flex items-start justify-between gap-4">
-              <div className="space-y-1">
-                <h2 className="text-xl font-semibold text-foreground">{page.label}</h2>
-                <p className="text-sm text-muted">{page.description}</p>
-              </div>
-              <Chip
-                color={page.status === "Ready" ? "success" : "warning"}
-                size="sm"
-                variant="soft"
-              >
-                {page.status}
-              </Chip>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <Button variant="tertiary" onPress={() => router.push(page.href)}>
-                Visit page
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-semibold text-foreground">Ready Now</h2>
+            <p className="mt-1 text-sm text-muted">
+              Live practice pages sorted alphabetically.
+            </p>
+          </div>
+          <Chip color="success" variant="soft">
+            {readyPages.length} ready
+          </Chip>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2">
+          {readyPages.map((page) => (
+            <Card
+              key={page.href}
+              className="border border-separator bg-surface shadow-surface"
+            >
+              <CardHeader className="flex items-start justify-between gap-4">
+                <div className="space-y-1">
+                  <h2 className="text-xl font-semibold text-foreground">{page.label}</h2>
+                  <p className="text-sm text-muted">{page.description}</p>
+                </div>
+                <Chip color="success" size="sm" variant="soft">
+                  {page.status}
+                </Chip>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <Button variant="tertiary" onPress={() => router.push(page.href)}>
+                  Visit page
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </div>
+
+      {comingSoonPages.length > 0 ? (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-semibold text-foreground">Coming Soon</h2>
+              <p className="mt-1 text-sm text-muted">
+                Additional exercises that are not yet verified for deployment.
+              </p>
+            </div>
+            <Chip color="warning" variant="soft">
+              {comingSoonPages.length} coming soon
+            </Chip>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {comingSoonPages.map((page) => (
+              <Card
+                key={page.href}
+                className="border border-separator bg-surface shadow-surface"
+              >
+                <CardHeader className="flex items-start justify-between gap-4">
+                  <div className="space-y-1">
+                    <h2 className="text-xl font-semibold text-foreground">{page.label}</h2>
+                    <p className="text-sm text-muted">{page.description}</p>
+                  </div>
+                  <Chip color="warning" size="sm" variant="soft">
+                    Coming Soon
+                  </Chip>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <Button isDisabled variant="tertiary">
+                    Coming soon
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </section>
   );
 }

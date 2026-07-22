@@ -527,7 +527,7 @@ export default function FormInputsPage() {
               <Checkbox
                 data-testid="checkout-gift-wrap"
                 isSelected={checkoutForm.giftWrap}
-                onValueChange={(isSelected) =>
+                onChange={(isSelected) =>
                   setCheckoutForm((current) => ({
                     ...current,
                     giftWrap: isSelected,
@@ -674,7 +674,7 @@ export default function FormInputsPage() {
               <Checkbox
                 data-testid="billing-terms"
                 isSelected={billingForm.agreeToTerms}
-                onValueChange={(isSelected) =>
+                onChange={(isSelected) =>
                   setBillingForm((current) => ({
                     ...current,
                     agreeToTerms: isSelected,
@@ -811,7 +811,7 @@ export default function FormInputsPage() {
               <Checkbox
                 data-testid="support-contact-back"
                 isSelected={supportForm.contactBack}
-                onValueChange={(isSelected) =>
+                onChange={(isSelected) =>
                   setSupportForm((current) => ({
                     ...current,
                     contactBack: isSelected,
