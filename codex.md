@@ -30,6 +30,8 @@
   - `/add-remove-elements` -> Add/Remove Elements
   - `/basic-auth` -> Basic Auth
   - `/broken-images` -> Broken Images
+  - `/checkboxes` -> Checkboxes
+  - `/form-inputs` -> Form Inputs
   - `/infinite-scroll` -> Infinite Scroll
   - `/pagination` -> Pagination
   - `/file-upload` -> File Upload
@@ -40,6 +42,8 @@
   - `/add-remove-elements` is implemented as the second real practice page with dynamic DOM creation and removal.
   - `/basic-auth` is implemented as a network-level authentication exercise.
   - `/broken-images` is implemented with generated local assets plus intentional broken image URLs.
+  - `/checkboxes` is implemented as a multi-section checkbox practice page with repeated layouts, disabled states, and live selection summaries.
+  - `/form-inputs` is implemented as a multi-form page with realistic account, shipping, billing, and support flows, each with independent validation.
   - `/infinite-scroll` is implemented as a client feed backed by a paginated API endpoint.
   - `/pagination` is implemented and reuses the same paginated feed API with explicit next/previous navigation.
   - `/file-upload` is implemented as a Blob-backed upload UI with a simple chooser and success state.

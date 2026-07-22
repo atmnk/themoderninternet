@@ -67,6 +67,20 @@ export const siteConfig = {
         "A downloadable file index that lists files previously uploaded to the shared Blob store.",
       status: "Ready",
     },
+    {
+      label: "Checkboxes",
+      href: "/checkboxes",
+      description:
+        "A checkbox playground with multiple UI variations, repeated groups, and mixed checked states.",
+      status: "Ready",
+    },
+    {
+      label: "Form Inputs",
+      href: "/form-inputs",
+      description:
+        "A realistic form playground with multiple sections, varied input types, and inline validation flows.",
+      status: "Ready",
+    },
   ],
   links: {
     github: "",
