@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@heroui/react";
 
 import { subtitle, title } from "@/components/primitives";
+import { MAX_UPLOAD_SIZE_BYTES } from "@/lib/blob-storage";
 
 type UploadResult = {
   configured: boolean;
@@ -13,6 +14,7 @@ type UploadResult = {
     downloadUrl: string;
     pathname: string;
     filename: string;
+    appDownloadUrl: string;
   };
 };
 
@@ -60,6 +62,8 @@ export default function FileUploadPage() {
     }
   };
 
+  const maxSizeInMb = Math.floor(MAX_UPLOAD_SIZE_BYTES / (1024 * 1024));
+
   return (
     <section className="space-y-8">
       <div className="relative overflow-hidden rounded-[2rem] border border-separator bg-surface px-6 py-10 shadow-surface backdrop-blur md:px-10">
@@ -88,6 +92,10 @@ export default function FileUploadPage() {
             This page is intentionally simple so automation can focus on file
             chooser interactions and upload completion states.
           </p>
+          <p className="mt-2 text-sm text-muted">
+            Uploads are limited to {maxSizeInMb} MB and executable or script-like
+            files are blocked server-side.
+          </p>
 
           <label
             className="mt-6 block rounded-[1.5rem] border border-dashed border-separator bg-background-secondary p-5"
@@ -97,7 +105,8 @@ export default function FileUploadPage() {
               Select a file
             </span>
             <span className="mt-1 block text-sm text-muted">
-              Any file type is accepted and stored in the shared uploads bucket.
+              Regular files up to {maxSizeInMb} MB are accepted. Executable and
+              script-like files are rejected.
             </span>
             <input
               id="file-upload-input"
@@ -144,7 +153,7 @@ export default function FileUploadPage() {
               data-testid="upload-success"
             >
               Uploaded <span className="font-semibold">{success.filename}</span>.{" "}
-              <a className="underline" href={success.downloadUrl} target="_blank" rel="noreferrer">
+              <a className="underline" href={success.appDownloadUrl} target="_blank" rel="noreferrer">
                 Open download link
               </a>
             </div>
@@ -159,6 +168,8 @@ export default function FileUploadPage() {
             <li>Create a Vercel Blob store for this project.</li>
             <li>Run `vercel link` in this repo.</li>
             <li>Run `vercel env pull .env.local` to fetch `BLOB_READ_WRITE_TOKEN`.</li>
+            <li>This app is configured for a private Blob store and serves downloads through the app.</li>
+            <li>Upload validation blocks files over 5 MB and common executable or script formats.</li>
             <li>Restart local dev after the env file is created or updated.</li>
           </ul>
         </aside>

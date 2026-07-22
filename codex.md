@@ -22,7 +22,8 @@
 - Basic auth behavior: `/basic-auth` is protected in `middleware.ts` with HTTP Basic Authentication and accepts the credentials `admin` / `admin`.
 - Infinite scroll behavior: `/infinite-scroll` consumes `/api/infinite-feed`, a paginated endpoint that returns deterministic pseudo-random feed cards for endless-scroll style testing.
 - Shared feed API: `/api/infinite-feed` now has a larger dataset window and is reused by both `/infinite-scroll` and `/pagination`.
-- File storage behavior: `/file-upload` and `/file-download` share a Vercel Blob-backed storage flow. Uploads are stored under the `uploads/` prefix and the download page lists the same stored files.
+- File storage behavior: `/file-upload` and `/file-download` share a Vercel Blob-backed storage flow. Uploads are stored under the `uploads/` prefix in a private Blob store, and downloads are served through `/api/files/download` instead of direct public Blob URLs.
+- Upload safety rules: File uploads are limited to 5 MB and reject common executable or script-like file extensions/MIME types. This is a lightweight misuse guard, not full malware scanning.
 - Local Blob setup: To make file upload/download work locally, run `vercel link`, then `vercel env pull .env.local`, and restart local dev so `BLOB_READ_WRITE_TOKEN` is available.
 - Current practice routes:
   - `/ab-testing` -> A/B Testing

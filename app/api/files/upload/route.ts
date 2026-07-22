@@ -5,6 +5,7 @@ import {
   buildBlobPathname,
   formatBlobName,
   hasBlobStoreConfigured,
+  validateUploadFile,
 } from "@/lib/blob-storage";
 
 export const runtime = "nodejs";
@@ -35,8 +36,20 @@ export async function POST(request: Request) {
       );
     }
 
+    const validation = validateUploadFile(file);
+
+    if (!validation.isValid) {
+      return NextResponse.json(
+        {
+          configured: true,
+          message: validation.message,
+        },
+        { status: 400 },
+      );
+    }
+
     const blob = await put(buildBlobPathname(file.name), file, {
-      access: "public",
+      access: "private",
       addRandomSuffix: false,
       contentType: file.type || undefined,
     });
@@ -48,6 +61,7 @@ export async function POST(request: Request) {
         downloadUrl: blob.downloadUrl,
         pathname: blob.pathname,
         filename: formatBlobName(blob.pathname),
+        appDownloadUrl: `/api/files/download?pathname=${encodeURIComponent(blob.pathname)}`,
       },
     });
   } catch (error) {

@@ -8,6 +8,7 @@ import { subtitle, title } from "@/components/primitives";
 type StoredFile = {
   url: string;
   downloadUrl: string;
+  appDownloadUrl: string;
   pathname: string;
   filename: string;
   size: number;
@@ -87,7 +88,8 @@ export default function FileDownloadPage() {
             <h1 className={title({ size: "lg" })}>File Download</h1>
             <p className={subtitle({ class: "max-w-3xl" })}>
               This page lists files stored through the upload example and gives
-              each one a direct download link from the same shared Blob store.
+              each one a download link served through the app, which works with
+              a private Vercel Blob store.
             </p>
           </div>
         </div>
@@ -149,7 +151,7 @@ export default function FileDownloadPage() {
 
                     <a
                       className="inline-flex rounded-full bg-[var(--accent-soft)] px-4 py-2 text-sm font-medium text-foreground"
-                      href={file.downloadUrl}
+                      href={file.appDownloadUrl}
                       rel="noreferrer"
                       target="_blank"
                     >
@@ -167,7 +169,7 @@ export default function FileDownloadPage() {
           </h2>
           <ul className="mt-4 space-y-3 text-sm text-muted">
             <li>This page uses the same Blob store as the upload example.</li>
-            <li>Good checks: list count, filename text, and valid download links.</li>
+            <li>Downloads are proxied through `/api/files/download` for private storage.</li>
             <li>Refreshing should re-query the backend and show newly uploaded files.</li>
           </ul>
         </aside>

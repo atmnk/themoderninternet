@@ -29,6 +29,7 @@ export async function GET() {
       .map((blob) => ({
         url: blob.url,
         downloadUrl: blob.downloadUrl,
+        appDownloadUrl: `/api/files/download?pathname=${encodeURIComponent(blob.pathname)}`,
         pathname: blob.pathname,
         filename: formatBlobName(blob.pathname),
         size: blob.size,
