@@ -116,11 +116,11 @@ export default function FileUploadPage() {
             <Button
               className="rounded-full"
               data-testid="upload-button"
-              isLoading={isUploading}
+              isDisabled={isUploading}
               variant="primary"
               onPress={handleUpload}
             >
-              Upload file
+              {isUploading ? "Uploading..." : "Upload file"}
             </Button>
 
             {selectedFile ? (

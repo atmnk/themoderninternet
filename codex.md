@@ -13,6 +13,8 @@
 
 - Scaffold source: HeroUI CLI app template for Next.js App Router.
 - Branding: Use the exact app name `The Modern Internet`.
+- Package manager: Standardize on `pnpm` for local development, lockfile management, and Vercel installs.
+- Pnpm repo config: Commit `pnpm-lock.yaml`, use repo-local `.npmrc` to disable the interactive module purge prompt, and allow the required package build scripts through pnpm config.
 - Styling direction: Keep HeroUI as the component system and use a darker, slightly cinematic shell instead of the stock starter look.
 - Theme system: The app now supports multiple named themes selected from a navbar dropdown. Current themes are `midnight`, `sunrise`, `paper`, `canopy`, `lagoon`, `signal`, `ember`, `blossom`, and `graphite`, driven by shared CSS tokens via `next-themes`.
 - Navigation model: The homepage is the primary catalog of pages. The navbar should remain compact and point back to the homepage instead of enumerating all practice routes.

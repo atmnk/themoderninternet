@@ -25,16 +25,16 @@ npx create-next-app -e https://github.com/heroui-inc/next-app-template
 
 ### Install dependencies
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
-
 ```bash
-npm install
+pnpm install
 ```
+
+If `pnpm` prompts about rebuilding `node_modules`, this repo is configured to allow the non-interactive purge automatically.
 
 ### Run the development server
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ## License
