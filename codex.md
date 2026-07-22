@@ -18,6 +18,7 @@
 - Styling direction: Keep HeroUI as the component system and use a darker, slightly cinematic shell instead of the stock starter look.
 - Theme system: The app now supports multiple named themes selected from a navbar dropdown. Current themes are `midnight`, `sunrise`, `paper`, `canopy`, `lagoon`, `signal`, `ember`, `blossom`, and `graphite`, driven by shared CSS tokens via `next-themes`.
 - Navigation model: The homepage is the primary catalog of pages. The navbar should remain compact and point back to the homepage instead of enumerating all practice routes.
+- GitHub cross-check marker: Every page should show a shared shell-level classic top-right corner `Fork me on GitHub` ribbon linking to `https://github.com/atmnk/themoderninternet` as a quick visual cross-check that the sample app is the expected deployment.
 - A/B testing behavior: `/ab-testing` now assigns a random variant in middleware, persists it in the `tmi_ab_testing_variant` cookie, and renders different functionality for control vs variation users.
 - Basic auth behavior: `/basic-auth` is protected in `middleware.ts` with HTTP Basic Authentication and accepts the credentials `admin` / `admin`.
 - Infinite scroll behavior: `/infinite-scroll` consumes `/api/infinite-feed`, a paginated endpoint that returns deterministic pseudo-random feed cards for endless-scroll style testing.

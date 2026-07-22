@@ -57,6 +57,16 @@ export default function RootLayout({
           }}
         >
           <div className="relative flex min-h-screen flex-col">
+            <div className="pointer-events-none fixed right-0 top-0 z-50 h-40 w-40 overflow-hidden">
+              <a
+                className="pointer-events-auto absolute right-[-2.85rem] top-8 block w-56 rotate-45 border border-emerald-900 bg-emerald-600 px-0 py-2 text-center text-xs font-semibold text-white shadow-[0_6px_14px_rgba(0,0,0,0.35)] transition-colors hover:bg-emerald-500"
+                href={siteConfig.links.github}
+                rel="noreferrer"
+                target="_blank"
+              >
+                Fork me on GitHub
+              </a>
+            </div>
             <Navbar />
             <main className="mx-auto w-full max-w-6xl flex-grow px-6 pb-16 pt-12">
               {children}

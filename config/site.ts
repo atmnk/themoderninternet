@@ -335,7 +335,7 @@ export const siteConfig = {
     },
   ],
   links: {
-    github: "",
+    github: "https://github.com/atmnk/themoderninternet",
     docs: "https://heroui.com",
   },
 };
